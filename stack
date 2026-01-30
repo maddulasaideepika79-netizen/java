@@ -1,0 +1,47 @@
+import java.util.*;
+class Solution{
+	
+	public static void main(String []argh)
+	{
+		Scanner s = new Scanner(System.in);
+		
+		while (s.hasNextLine()) {
+			String input=s.nextLine();
+            //Complete the code
+            
+            System.out.println(isBalanced(input));
+        }
+
+        s.close();
+    }
+
+    private static boolean isBalanced(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+
+            // Push opening brackets
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } 
+            // Handle closing brackets
+            else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                char top = stack.pop();
+
+                if ((ch == ')' && top != '(') ||
+                    (ch == '}' && top != '{') ||
+                    (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+
+        // If stack is empty, string is balanced
+        return stack.isEmpty();
+		}
+		
+	}
